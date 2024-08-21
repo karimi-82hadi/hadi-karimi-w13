@@ -1,25 +1,44 @@
+import { useState } from "react";
+import { data } from "../constants/TabsData";
+
 import styles from "./TabComponent.module.css";
 
 function TabComponent() {
+  const tabsData = data;
+  const [activeTabId, setActiveTabId] = useState(1);
+
+  const clickHandler = (id) => {
+    setActiveTabId(id);
+  };
+
   return (
     <div className={styles.tabContainer}>
       <div className={styles.tabHeader}>
         <h1>Tabs Component with React</h1>
         <ul>
-          <li className={styles.active}>Tab 1</li>
-          <li>Tab 2</li>
-          <li>Tab 3</li>
-          <li>Tab 4</li>
+          {tabsData.map((tab) => (
+            <li
+              key={tab.id}
+              onClick={() => {
+                clickHandler(tab.id);
+              }}
+              className={tab.id === activeTabId ? styles.active : null}
+            >
+              Tab {tab.id}
+            </li>
+          ))}
         </ul>
       </div>
       <div className={styles.tabContent}>
-        <h2>Content 1</h2>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe sit
-          quisquam explicabo eaque iure aliquid, culpa veniam perferendis vero
-          maxime reiciendis ab? Modi laboriosam rerum quos illo amet itaque
-          culpa?
-        </p>
+        {tabsData.map(
+          (tab) =>
+            tab.id === activeTabId && (
+              <div key={tab.id}>
+                <h2>{tab.title}</h2>
+                <p>{tab.desc}</p>
+              </div>
+            )
+        )}
       </div>
     </div>
   );

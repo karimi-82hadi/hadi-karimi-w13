@@ -20,3 +20,5 @@ const data = [
     desc: "Quod ratione porro earum voluptatibus nisi consequatur consectetur dolore provident. At illum totam nostrum nam adipisci? Odit repellendus ea nesciunt libero, repellat ducimus quae omnis totam! Quod quo libero impedit.",
   },
 ];
+
+export { data };

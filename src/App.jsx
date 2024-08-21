@@ -1,5 +1,11 @@
+import TabComponent from "./components/TabComponent";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <TabComponent />
+    </>
+  );
 }
 
 export default App;

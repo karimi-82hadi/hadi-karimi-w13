@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { data } from "../constants/TabsData";
 
 import styles from "./TabComponent.module.css";
@@ -9,7 +9,12 @@ function TabComponent() {
 
   const clickHandler = (id) => {
     setActiveTabId(id);
+    localStorage.setItem("activeTab", JSON.stringify(id));
   };
+
+  useEffect(() => {
+    setActiveTabId(+localStorage.getItem("activeTab"));
+  }, []);
 
   return (
     <div className={styles.tabContainer}>
